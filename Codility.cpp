@@ -4,9 +4,19 @@
 #include "pch.h"
 #include <iostream>
 
+#include "Lesson1.h"
+
 int main()
 {
-    std::cout << "Hello World!\n"; 
+	std::cout << "Practice from Codility.com" << std::endl << std::endl;
+
+	CodilityPractice *practice = new Lesson1;
+	practice->Run();
+
+	if (practice)delete practice;
+	practice = nullptr;
+
+	return 0;
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
