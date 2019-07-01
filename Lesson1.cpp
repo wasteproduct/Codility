@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void Solution(int previousInteger, int previousExponent, int&previousGap);
+int Solution1(int N);
 
 Lesson1::Lesson1()
 {
@@ -21,60 +21,60 @@ void Lesson1::Run(void)
 {
 	cout << "Lesson 1. Iterations" << endl << endl;
 
-	int integer = 41;
+	//cout << Solution1(3178) << endl;
+
+	cout << "Solution 1: 73%" << endl;
+}
+
+int Solution1(int N)
+{
 	int initialExponent = 0;
 
-	int binaryNumber = 1;
+	int initialBinaryNumber = 1;
 
-	while (binaryNumber * 2 <= integer)
+	while (initialBinaryNumber * 2 <= N)
 	{
-		binaryNumber *= 2;
+		initialBinaryNumber *= 2;
 		initialExponent++;
 	}
 
-	//Solution(initialExponent);
+	int binaryGap = 0;
 
-	/*int integer = 31;
-	int ones = 0;
+	int integer = N - initialBinaryNumber;
+	int previousExponent = initialExponent;
 
-	while (integer > 1)
+	if (integer <= 0)return 0;
+
+	if (integer == 1)
 	{
-		ones++;
+		if (previousExponent > binaryGap)return --previousExponent;
+	}
 
-		int x = 1;
-		int exponent = 0;
-
-		while (x * 2 <= integer)
+	while (true)
+	{
+		if (integer == 1)
 		{
-			x *= 2;
+			if (previousExponent > binaryGap)binaryGap = previousExponent;
+
+			break;
+		}
+
+		if (integer <= 0)break;
+
+		int exponent = 0;
+		int binaryNumber = 1;
+
+		while (binaryNumber * 2 <= integer)
+		{
+			binaryNumber *= 2;
 			exponent++;
 		}
 
-		cout << integer << endl;
-		cout << x << endl << endl;
+		if (previousExponent - exponent > binaryGap)binaryGap = previousExponent - exponent;
 
-		integer -= x;
+		integer -= binaryNumber;
+		previousExponent = exponent;
 	}
 
-	if (integer % 2 == 1)ones++;
-
-	cout << integer << endl;
-	cout << ones << endl;*/
-}
-
-void Solution(int previousInteger, int previousExponent, int & previousGap)
-{
-	int integer = previousInteger;
-	int exponent = 0;
-	int binaryNumber = 1;
-
-	while (binaryNumber * 2 <= integer)
-	{
-		binaryNumber *= 2;
-		exponent++;
-	}
-
-	if (previousExponent - exponent > previousGap)previousGap = previousExponent - exponent;
-
-	//Solution(exponent, previousGap);
+	return --binaryGap;
 }
